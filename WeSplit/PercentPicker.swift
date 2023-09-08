@@ -8,21 +8,25 @@
 import SwiftUI
 
 struct PercentPicker: View {
+    @Binding var tipPercentage: Int
+    
     var body: some View {
         Form {
             Section {
-                ForEach(0..<101) {
-                    Text($0, format: .percent)
+                Picker("How much tip do you want to leave?", selection: $tipPercentage) {
+                    ForEach(0..<101) {
+                        Text($0, format: .percent)
+                    }
                 }
+                .pickerStyle(.inline)
             }
-            
         }
-        .navigationTitle("Select tip`s percent")
+        .navigationTitle("Tips")
     }
 }
 
 struct PercentPicker_Previews: PreviewProvider {
     static var previews: some View {
-        PercentPicker()
+        PercentPicker(tipPercentage: .constant(0))
     }
 }

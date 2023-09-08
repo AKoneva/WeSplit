@@ -68,7 +68,7 @@ struct ContentView: View {
 //                }
                 
                 NavigationLink {
-                    PercentPicker()
+                    PercentPicker(tipPercentage: $tipPercentage)
                 } label: {
                     Section {
                         Text("Tip percentage")
@@ -83,6 +83,7 @@ struct ContentView: View {
                 
                 Section {
                     Text(total, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                        .foregroundColor(Double(tipPercentage) == 0 ? .red : .primary)
                 } header: {
                     Text("Total amount for the check")
                 }
